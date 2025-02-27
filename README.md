@@ -16,15 +16,14 @@ Before installing Snort, ensure you have the following:
 ## 💻 Machines Used
 | Machine | Operating System |
 |---------|-----------------|
-| **Host Machine** | Ubuntu 20.04 |
-| **Test Machine** | Windows 10 |
+| **Host Machine** | Ubuntu 22.04 |
+| **Test Machine** | Windows 11 |
 
 ---
 ## 🛠 Software and Tools Used
 | Software/Tool | Purpose |
 |--------------|---------|
 | **Snort** | Intrusion Detection System |
-| **Wireshark** | Packet Analysis |
 | **Nmap** | Network Scanning |
 | **Ping** | Connectivity Testing |
 | **Nano** | Configuration Editing |
