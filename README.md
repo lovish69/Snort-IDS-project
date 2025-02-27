@@ -107,7 +107,7 @@ sudo snort -c /etc/snort/snort.conf -l /var/log/snort
 
 ### 🔹 Step 2: Generate Test Traffic
 ```bash
-ping -c 3 8.8.8.8
+ping -c 3 [HOST_MACHINE]
 ```
 Check Snort logs:
 ```bash
