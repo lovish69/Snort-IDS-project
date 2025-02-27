@@ -35,19 +35,19 @@ Before installing Snort, ensure you have the following:
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
-![Screenshot](Screenshot%20(675).png)
+
 
 ### 🔹 Step 2: Install Required Dependencies
 ```bash
 sudo apt install -y build-essential libpcap-dev libpcre3-dev libdnet-dev zlib1g-dev luajit libluajit-5.1-dev openssl libssl-dev
 ```
-![Screenshot](Screenshot%20(676).png)
+
 
 ### 🔹 Step 3: Download and Install Snort
 ```bash
 wget https://www.snort.org/downloads/snort/snort-2.9.17.tar.gz
 ```
-![Screenshot](Screenshot%20(678).png)
+
 ```bash
 tar -xvzf snort-2.9.17.tar.gz
 cd snort-2.9.17
@@ -55,13 +55,13 @@ cd snort-2.9.17
 make
 sudo make install
 ```
-![Screenshot](Screenshot%20(680).png)
+
 
 ### 🔹 Step 4: Verify Installation
 ```bash
 snort -V
 ```
-![Screenshot](Screenshot%20(681).png)
+
 
 ---
 ## ⚙️ Configuring Snort
@@ -69,31 +69,34 @@ snort -V
 ```bash
 sudo mkdir -p /etc/snort/rules /var/log/snort /usr/local/lib/snort_dynamicrules
 ```
-![Screenshot](Screenshot%20(682).png)
+
 
 ### 🔹 Step 2: Copy Default Configuration Files
 ```bash
 sudo cp etc/*.conf etc/*.map /etc/snort/
 ```
-![Screenshot](Screenshot%20(683).png)
+
 
 ### 🔹 Step 3: Modify `snort.conf`
 - Open the configuration file:
 ```bash
 sudo nano /etc/snort/snort.conf
 ```
-![Screenshot](Screenshot%20(684).png)
+
 - Edit the following lines:
   - Set `ipvar HOME_NET` to your **network IP range**.
   - Add custom rules path: `include $RULE_PATH/local.rules`
+    
+![Screenshot (676)](https://github.com/user-attachments/assets/dd03abcd-62a9-4b13-9413-a90cb84ab2c7)
 
 ---
 ## 📝 Writing Snort Rules
 Example rule to detect **ICMP ping requests**:
 ```bash
-echo 'alert icmp any any -> any any (msg:"ICMP Ping detected"; sid:1000001;)' | sudo tee -a /etc/snort/rules/local.rules
+echo 'alert icmp any any -> any any (msg:"ICMP Ping detected"; sid:1000001;)' 
 ```
-![Screenshot](Screenshot%20(685).png)
+![Screenshot (675)](https://github.com/user-attachments/assets/2da2cc87-36fd-496d-93b9-d0ab87e5a6ef)
+
 
 ---
 ## 🛠 Testing Snort
@@ -101,7 +104,7 @@ echo 'alert icmp any any -> any any (msg:"ICMP Ping detected"; sid:1000001;)' | 
 ```bash
 sudo snort -c /etc/snort/snort.conf -l /var/log/snort
 ```
-![Screenshot](Screenshot%20(686).png)
+
 
 ### 🔹 Step 2: Generate Test Traffic
 ```bash
@@ -111,21 +114,31 @@ Check Snort logs:
 ```bash
 cat /var/log/snort/alert
 ```
-![Screenshot](Screenshot%20(687).png)
+![Screenshot (687)](https://github.com/user-attachments/assets/6c94d004-1503-4f87-8223-0e1381f555ad)
+
 
 ### 🔹 Step 3: Additional Snort Output Logs
 ```bash
 ls /var/log/snort
 ```
-![Screenshot](Screenshot%20(688).png)
+![Screenshot (688)](https://github.com/user-attachments/assets/ba4df8ee-f6c6-4d03-bafa-6a400eb95fee)
+
 
 ---
 ## 🔄 Running Snort as a Service
 To run Snort in **IDS mode continuously**:
 ```bash
-sudo snort -A console -q -c /etc/snort/snort.conf -i eth0
+sudo snort -A console -q -c /etc/snort/snort.conf -i ens33
 ```
 🔹 Replace `eth0` with your **active network interface**.
+
+![Screenshot (678)](https://github.com/user-attachments/assets/55e5d7ab-5412-40be-aba0-9b40ef21f3a2)
+
+![Screenshot (680)](https://github.com/user-attachments/assets/650b62d0-72d9-4ca3-8049-91aa13ce52e4)
+
+![Screenshot (683)](https://github.com/user-attachments/assets/a8cec3a2-1c24-4c85-82e8-21ed222ad063)
+
+![Screenshot (684)](https://github.com/user-attachments/assets/8f5dae81-5c02-4124-9ac3-8b2d6f28dcfe)
 
 ---
 ## 🏆 Conclusion
